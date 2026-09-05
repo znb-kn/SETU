@@ -1,0 +1,1041 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta
+    name="description"
+    content="SETU — an assistive communication and caregiver pattern-awareness prototype."
+  >
+
+  <title>SETU — Assistive Communication</title>
+
+  <link rel="stylesheet" href="bla2.css">
+</head>
+
+<body>
+
+  <!-- =========================
+       TOP BAR
+       ========================= -->
+
+  <header class="topbar">
+
+    <div class="brand">
+      <div class="logo">से</div>
+
+      <div class="brand-text">
+        <h1>SETU</h1>
+        <p>Communication without barriers</p>
+      </div>
+    </div>
+
+    <div class="patient-info">
+
+      <div class="patient-text">
+        <strong>Riya Sharma</strong>
+        <span>
+          <span class="online-dot"></span>
+          Online
+        </span>
+      </div>
+
+      <div class="avatar">R</div>
+
+    </div>
+
+  </header>
+
+
+  <!-- =========================
+       NAVIGATION
+       ========================= -->
+
+  <nav class="navbar">
+
+    <button
+      class="nav-btn active"
+      onclick="switchView('patient', this)"
+    >
+      Communication
+    </button>
+
+    <button
+      class="nav-btn"
+      onclick="switchView('caregiver', this)"
+    >
+      Caregiver Dashboard
+    </button>
+
+    <button
+      class="nav-btn"
+      onclick="switchView('settings', this)"
+    >
+      Settings
+    </button>
+
+  </nav>
+
+
+  <main>
+
+    <!-- =====================================================
+         PATIENT VIEW
+         ===================================================== -->
+
+    <section id="patientView" class="view active">
+
+      <!-- HERO -->
+
+      <div class="hero">
+
+        <div class="hero-card">
+
+          <h2>What would you like to communicate?</h2>
+
+          <p>
+            Tap a symbol to communicate. SETU gives immediate visual and
+            optional audio confirmation while recording requests for
+            caregiver context.
+          </p>
+
+          <div class="hero-highlight">
+            💬 Tap a symbol to speak
+          </div>
+
+        </div>
+
+
+        <div class="privacy-card">
+
+          <div class="privacy-badge">
+            🔒 Privacy First
+          </div>
+
+          <h3>Designed for independence</h3>
+
+          <p>
+            Communication data stays on the device by default.
+            Caregivers receive meaningful pattern alerts rather than
+            notifications for every single tap.
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <!-- LIVE STATUS -->
+
+      <div class="status-bar">
+
+        <div class="status-left">
+          <span class="online-dot"></span>
+          <strong>SETU is ready</strong>
+        </div>
+
+        <div class="status-right" id="statusText">
+          Waiting for communication
+        </div>
+
+      </div>
+
+
+      <!-- COMMUNICATION BOARD -->
+
+      <div class="section-title">
+
+        <h2>Communication Board</h2>
+
+        <p>
+          Choose what you want to communicate.
+        </p>
+
+      </div>
+
+
+      <div class="symbol-grid">
+
+        <!-- WATER -->
+
+        <button
+          class="symbol-btn"
+          onclick="makeRequest('Water','💧')"
+          aria-label="Water"
+        >
+
+          <span class="symbol-emoji">💧</span>
+          <span class="symbol-label">Water</span>
+
+          <span
+            class="favorite"
+            onclick="event.stopPropagation(); toggleFavorite('Water')"
+            aria-label="Favorite Water"
+          >☆</span>
+
+        </button>
+
+
+        <!-- PAIN -->
+
+        <button
+          class="symbol-btn"
+          onclick="makeRequest('Pain','😣')"
+          aria-label="Pain"
+        >
+
+          <span class="symbol-emoji">😣</span>
+          <span class="symbol-label">Pain</span>
+
+          <span
+            class="favorite"
+            onclick="event.stopPropagation(); toggleFavorite('Pain')"
+            aria-label="Favorite Pain"
+          >☆</span>
+
+        </button>
+
+
+        <!-- BATHROOM -->
+
+        <button
+          class="symbol-btn"
+          onclick="makeRequest('Bathroom','🚽')"
+          aria-label="Bathroom"
+        >
+
+          <span class="symbol-emoji">🚽</span>
+          <span class="symbol-label">Bathroom</span>
+
+          <span
+            class="favorite"
+            onclick="event.stopPropagation(); toggleFavorite('Bathroom')"
+            aria-label="Favorite Bathroom"
+          >☆</span>
+
+        </button>
+
+
+        <!-- DISTRESS -->
+
+        <button
+          class="symbol-btn"
+          onclick="makeRequest('Distress','⚠️')"
+          aria-label="Distress"
+        >
+
+          <span class="symbol-emoji">⚠️</span>
+          <span class="symbol-label">Distress</span>
+
+          <span
+            class="favorite"
+            onclick="event.stopPropagation(); toggleFavorite('Distress')"
+            aria-label="Favorite Distress"
+          >☆</span>
+
+        </button>
+
+
+        <!-- COMPANY -->
+
+        <button
+          class="symbol-btn"
+          onclick="makeRequest('Company','❤️')"
+          aria-label="Company"
+        >
+
+          <span class="symbol-emoji">❤️</span>
+          <span class="symbol-label">Company</span>
+
+          <span
+            class="favorite"
+            onclick="event.stopPropagation(); toggleFavorite('Company')"
+            aria-label="Favorite Company"
+          >☆</span>
+
+        </button>
+
+
+        <!-- FOOD -->
+
+        <button
+          class="symbol-btn"
+          onclick="makeRequest('Food','🍽️')"
+          aria-label="Food"
+        >
+
+          <span class="symbol-emoji">🍽️</span>
+          <span class="symbol-label">Food</span>
+
+          <span
+            class="favorite"
+            onclick="event.stopPropagation(); toggleFavorite('Food')"
+            aria-label="Favorite Food"
+          >☆</span>
+
+        </button>
+
+
+        <!-- BREAK -->
+
+        <button
+          class="symbol-btn"
+          onclick="makeRequest('Break','🧘')"
+          aria-label="Break"
+        >
+
+          <span class="symbol-emoji">🧘</span>
+          <span class="symbol-label">Break</span>
+
+          <span
+            class="favorite"
+            onclick="event.stopPropagation(); toggleFavorite('Break')"
+            aria-label="Favorite Break"
+          >☆</span>
+
+        </button>
+
+
+        <!-- COLD -->
+
+        <button
+          class="symbol-btn"
+          onclick="makeRequest('Cold','🥶')"
+          aria-label="Cold"
+        >
+
+          <span class="symbol-emoji">🥶</span>
+          <span class="symbol-label">Cold</span>
+
+          <span
+            class="favorite"
+            onclick="event.stopPropagation(); toggleFavorite('Cold')"
+            aria-label="Favorite Cold"
+          >☆</span>
+
+        </button>
+
+
+        <!-- HOT -->
+
+        <button
+          class="symbol-btn"
+          onclick="makeRequest('Hot','🥵')"
+          aria-label="Hot"
+        >
+
+          <span class="symbol-emoji">🥵</span>
+          <span class="symbol-label">Hot</span>
+
+          <span
+            class="favorite"
+            onclick="event.stopPropagation(); toggleFavorite('Hot')"
+            aria-label="Favorite Hot"
+          >☆</span>
+
+        </button>
+
+
+        <!-- YES -->
+
+        <button
+          class="symbol-btn"
+          onclick="makeRequest('Yes','👍')"
+          aria-label="Yes"
+        >
+
+          <span class="symbol-emoji">👍</span>
+          <span class="symbol-label">Yes</span>
+
+          <span
+            class="favorite"
+            onclick="event.stopPropagation(); toggleFavorite('Yes')"
+            aria-label="Favorite Yes"
+          >☆</span>
+
+        </button>
+
+      </div>
+
+
+      <!-- INSIGHT -->
+
+      <div class="insight-card">
+
+        <strong>💡 SETU insight</strong>
+
+        <p>
+          SETU looks for repeated communication patterns and can bring
+          potentially important patterns to a caregiver's attention.
+        </p>
+
+      </div>
+
+
+      <!-- REQUEST SUMMARY -->
+
+      <div class="summary-grid">
+
+        <div class="summary-card">
+
+          <div
+            class="number"
+            id="requestCount"
+          >0</div>
+
+          <p>Requests today</p>
+
+        </div>
+
+
+        <div class="summary-card">
+
+          <div
+            class="number"
+            id="todayCount"
+          >0</div>
+
+          <p>Communication events</p>
+
+        </div>
+
+
+        <div class="summary-card">
+
+          <div
+            class="number"
+            id="patientMost"
+          >—</div>
+
+          <p>Most requested</p>
+
+        </div>
+
+      </div>
+
+
+      <!-- HISTORY -->
+
+      <div class="panel">
+
+        <h2>Recent Activity</h2>
+
+        <p class="panel-subtitle">
+          Your latest communication requests.
+        </p>
+
+        <div
+          id="history"
+          class="history-list"
+        >
+          <p style="color:#64748b;">
+            No requests yet.
+          </p>
+        </div>
+
+      </div>
+
+
+      <!-- PATTERN SUMMARY -->
+
+      <div class="panel">
+
+        <h2>Communication Patterns</h2>
+
+        <p class="panel-subtitle">
+          SETU uses repeated requests to provide caregiver context.
+        </p>
+
+        <div id="patientPatterns">
+          No patterns detected yet.
+        </div>
+
+      </div>
+
+
+      <!-- HOW IT WORKS -->
+
+      <div class="panel">
+
+        <h2>How SETU Works</h2>
+
+        <p class="panel-subtitle">
+          A simple communication-to-context loop.
+        </p>
+
+
+        <div class="how-grid">
+
+          <div class="how-card">
+
+            <div class="how-number">1</div>
+
+            <h3>Communicate</h3>
+
+            <p>
+              The user taps a familiar symbol.
+            </p>
+
+          </div>
+
+
+          <div class="how-card">
+
+            <div class="how-number">2</div>
+
+            <h3>Record</h3>
+
+            <p>
+              SETU records the communication event locally.
+            </p>
+
+          </div>
+
+
+          <div class="how-card">
+
+            <div class="how-number">3</div>
+
+            <h3>Detect</h3>
+
+            <p>
+              Repeated requests within a short period can form a pattern.
+            </p>
+
+          </div>
+
+
+          <div class="how-card">
+
+            <div class="how-number">4</div>
+
+            <h3>Alert</h3>
+
+            <p>
+              A caregiver can receive meaningful context instead of
+              an alert for every tap.
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         CAREGIVER VIEW
+         ===================================================== -->
+
+    <section id="caregiverView" class="view">
+
+      <div class="dashboard-header">
+
+        <div>
+
+          <h2>Caregiver Dashboard</h2>
+
+          <p>
+            Meaningful communication patterns at a glance.
+          </p>
+
+        </div>
+
+        <button
+          class="demo-btn"
+          onclick="runDemo()"
+        >
+          ▶ Run Alert Demo
+        </button>
+
+      </div>
+
+
+      <!-- ALERT -->
+
+      <div
+        id="alertBox"
+        class="alert-box"
+      >
+
+        <div class="alert-top">
+
+          <div class="alert-icon">🚨</div>
+
+          <div>
+
+            <h3 id="alertTitle">
+              Pattern detected
+            </h3>
+
+          </div>
+
+        </div>
+
+
+        <p
+          id="alertMessage"
+          class="alert-message"
+        >
+          A repeated communication pattern was detected.
+        </p>
+
+
+        <div
+          id="alertTime"
+          class="alert-time"
+        >
+          Just now
+        </div>
+
+
+        <button
+          class="ack-btn"
+          onclick="acknowledge()"
+        >
+          Acknowledge
+        </button>
+
+      </div>
+
+
+      <!-- DASHBOARD STATS -->
+
+      <div class="summary-grid">
+
+        <div class="summary-card">
+
+          <div
+            id="total"
+            class="number"
+          >0</div>
+
+          <p>Total requests</p>
+
+        </div>
+
+
+        <div class="summary-card">
+
+          <div
+            id="patterns"
+            class="number"
+          >0</div>
+
+          <p>Patterns detected</p>
+
+        </div>
+
+
+        <div class="summary-card">
+
+          <div
+            id="most"
+            class="number"
+          >—</div>
+
+          <p>Most requested</p>
+
+        </div>
+
+      </div>
+
+
+      <!-- ANALYTICS -->
+
+      <div class="panel">
+
+        <h2>Communication Analytics</h2>
+
+        <p class="panel-subtitle">
+          Frequency of communication requests.
+        </p>
+
+        <div
+          id="analytics"
+          class="analytics-list"
+        >
+          No communication data yet.
+        </div>
+
+      </div>
+
+
+      <!-- RULE ENGINE -->
+
+      <div class="panel">
+
+        <h2>Pattern Detection Rule</h2>
+
+        <p class="panel-subtitle">
+          SETU uses a simple threshold-based rule for the prototype.
+        </p>
+
+
+        <div class="rule-card">
+
+          <strong>
+            Example:
+          </strong>
+
+          <p>
+            If the same request occurs at least twice within five minutes,
+            SETU can flag it as a pattern for caregiver attention.
+          </p>
+
+
+          <code>
+            SAME_REQUEST × 2 → within 5 minutes → PATTERN ALERT
+          </code>
+
+        </div>
+
+      </div>
+
+
+      <!-- EXPLANATIONS -->
+
+      <div class="panel">
+
+        <h2>Why SETU?</h2>
+
+        <p class="panel-subtitle">
+          Designed around communication, context and caregiver awareness.
+        </p>
+
+
+        <div class="explanation-grid">
+
+          <div class="explanation-card">
+
+            <h3>🔄 Bi-directional loop</h3>
+
+            <p>
+              SETU connects user communication with caregiver context,
+              rather than stopping at symbol-to-speech communication.
+            </p>
+
+          </div>
+
+
+          <div class="explanation-card">
+
+            <h3>🔔 Meaningful alerts</h3>
+
+            <p>
+              Threshold-based alerts reduce unnecessary notifications
+              caused by individual taps.
+            </p>
+
+          </div>
+
+
+          <div class="explanation-card">
+
+            <h3>🔒 Privacy by default</h3>
+
+            <p>
+              The prototype is designed around local-first communication
+              data rather than unnecessary cloud storage.
+            </p>
+
+          </div>
+
+
+          <div class="explanation-card">
+
+            <h3>♿ Accessibility</h3>
+
+            <p>
+              Large buttons, optional sound and calmer visual modes
+              support different communication preferences.
+            </p>
+
+          </div>
+
+
+          <div class="explanation-card">
+
+            <h3>📊 Context, not diagnosis</h3>
+
+            <p>
+              SETU highlights communication patterns for caregivers;
+              it does not claim to diagnose medical conditions.
+            </p>
+
+          </div>
+
+
+          <div class="explanation-card">
+
+            <h3>💡 Future-ready</h3>
+
+            <p>
+              The proof of concept can later be evaluated and expanded
+              with clinicians, caregivers and users.
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- ALERT HISTORY -->
+
+      <div class="panel">
+
+        <h2>Alert History</h2>
+
+        <p class="panel-subtitle">
+          Previously detected communication patterns.
+        </p>
+
+
+        <div
+          id="alertHistory"
+          class="alert-history"
+        >
+          <p style="color:#64748b;">
+            No alerts yet.
+          </p>
+        </div>
+
+
+        <button
+          class="clear-btn"
+          onclick="clearAlerts()"
+        >
+          Clear Alert History
+        </button>
+
+      </div>
+
+
+      <!-- PRIVACY -->
+
+      <div class="panel">
+
+        <h2>Privacy Principles</h2>
+
+        <p class="panel-subtitle">
+          SETU is designed with privacy in mind.
+        </p>
+
+
+        <div class="privacy-grid">
+
+          <div class="privacy-item">
+
+            <h3>🔒 Local-first</h3>
+
+            <p>
+              Communication events are stored locally in this prototype.
+            </p>
+
+          </div>
+
+
+          <div class="privacy-item">
+
+            <h3>👤 User control</h3>
+
+            <p>
+              Sound, display and accessibility preferences can be changed.
+            </p>
+
+          </div>
+
+
+          <div class="privacy-item">
+
+            <h3>🎯 Minimal alerts</h3>
+
+            <p>
+              Caregivers are shown patterns rather than every individual
+              communication event.
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         SETTINGS VIEW
+         ===================================================== -->
+
+    <section id="settingsView" class="view">
+
+      <div class="section-title">
+
+        <h2>Settings & Accessibility</h2>
+
+        <p>
+          Personalize SETU for different communication needs.
+        </p>
+
+      </div>
+
+
+      <div class="settings-grid">
+
+        <!-- SOUND -->
+
+        <div class="setting-card">
+
+          <h3>🔊 Audio Feedback</h3>
+
+          <p>
+            Hear optional confirmation when a communication symbol is tapped.
+          </p>
+
+          <button
+            id="soundToggle"
+            class="setting-btn"
+            onclick="toggleSound()"
+          >
+            Sound: OFF
+          </button>
+
+        </div>
+
+
+        <!-- LARGE MODE -->
+
+        <div class="setting-card">
+
+          <h3>🔎 Large Button Mode</h3>
+
+          <p>
+            Increase communication button size for easier interaction.
+          </p>
+
+          <button
+            id="largeToggle"
+            class="setting-btn"
+            onclick="toggleLargeMode()"
+          >
+            Large Mode: OFF
+          </button>
+
+        </div>
+
+
+        <!-- CALM MODE -->
+
+        <div class="setting-card">
+
+          <h3>🌿 Calm Mode</h3>
+
+          <p>
+            Reduce visual intensity for a calmer interface.
+          </p>
+
+          <button
+            id="calmToggle"
+            class="setting-btn"
+            onclick="toggleCalmMode()"
+          >
+            Calm Mode: OFF
+          </button>
+
+        </div>
+
+
+        <!-- THEMES -->
+
+        <div class="setting-card">
+
+          <h3>🎨 Theme</h3>
+
+          <p>
+            Choose the interface appearance.
+          </p>
+
+
+          <div class="theme-buttons">
+
+            <button
+              id="themeStandard"
+              class="theme-btn"
+              onclick="setTheme('standard')"
+            >
+              Standard
+            </button>
+
+
+            <button
+              id="themeCalm"
+              class="theme-btn"
+              onclick="setTheme('calm')"
+            >
+              Calm
+            </button>
+
+
+            <button
+              id="themeDark"
+              class="theme-btn"
+              onclick="setTheme('dark')"
+            >
+              Dark
+            </button>
+
+
+            <button
+              id="themeContrast"
+              class="theme-btn"
+              onclick="setTheme('contrast')"
+            >
+              High Contrast
+            </button>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- ACCESSIBILITY NOTE -->
+
+      <div class="accessibility-note">
+
+        <strong>♿ Accessibility note:</strong>
+
+        SETU is intended as a communication-support prototype.
+        Different users may prefer different combinations of sound,
+        button size, contrast and visual stimulation.
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- TOAST -->
+
+  <div
+    id="toast"
+    class="toast"
+  ></div>
+
+
+  <!-- JAVASCRIPT -->
+
+  <script src="bla3.js"></script>
+
+</body>
+</html>
